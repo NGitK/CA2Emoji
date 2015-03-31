@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CA2Emoji</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_second">Contact Name</string>
+    <string name="enter_name_text_view">Enter Name</string>
+    <string name="enter_name_button_text">Add Now</string>
+    <string name="get_the_name_text_view">Invite Contact</string>
+    <string name="Inbox">Inbox</string>
+    <string name="title_splash_screen">Splash Screen</string>
+</resources>

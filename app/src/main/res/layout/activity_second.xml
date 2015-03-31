@@ -1,0 +1,53 @@
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="20dp"
+    android:gravity="left" android:orientation="vertical" android:background="#FFFF8800"
+    tools:context="com.app1.neil.ca2emoji.SecondActivity">
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/enter_name_text_view" />
+
+         <EditText
+             android:layout_width="200dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/users_name_edit_text"/>
+
+     </LinearLayout>
+
+
+
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:paddingTop="15dp">
+
+         <TextView
+             android:id="@+id/calling_activity_info_text_view"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Add contact to contact list: "/>
+
+           <Button
+               android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:background="@drawable/button_add_gradient"
+               android:text="@string/enter_name_button_text"
+               android:onClick="onSendUsersName"/>
+
+
+
+
+         </LinearLayout>
+
+
+</LinearLayout>
