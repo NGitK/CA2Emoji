@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:background="@drawable/button_add_gradient"
         android:text="@string/play_button"
-        android:onClick="onSendUsersName"
+        android:onClick="onPlay"
         android:layout_below="@+id/record_yourself_textView"/>
 
     <Button
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:background="@drawable/button_add_gradient_record"
         android:text="@string/record_button"
-        android:onClick="onSendUsersName"
+        android:onClick="onRecord"
         android:textColor="#111111"
         android:layout_toRightOf="@+id/button_play_now"
         android:layout_below="@+id/record_yourself_textView"/>

@@ -59,6 +59,15 @@ public class MainActivity extends Activity {
 
     }
 
+    public void onViewRecorderClick(View view) {
+        Intent getRecorderScreenIntent = new Intent(this, RecordActivity.class);
+
+        getRecorderScreenIntent.putExtra("callingActivity", "MainActivity");
+
+        startActivity(getRecorderScreenIntent);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
