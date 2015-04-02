@@ -17,13 +17,7 @@ public class SecondActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Intent activityThatCalled = getIntent();
 
-        String previousActivity = activityThatCalled.getExtras().getString("callingActivity", "MainActivity");
-
-        TextView callingActivityMessage =(TextView)
-                findViewById(R.id.calling_activity_info_text_view);
-        callingActivityMessage.append(" " + previousActivity);
     }
 
 
@@ -55,11 +49,11 @@ public class SecondActivity extends Activity {
                 findViewById(R.id.users_name_edit_text);
         String userName =String.valueOf(userNameET.getText());
 
-               Intent goingBack = new Intent();
+               Intent returnName = new Intent();
 
-        goingBack.putExtra("UsersName", userName);
+        returnName.putExtra("UsersName", userName);
 
-        setResult(RESULT_OK, goingBack);
+        setResult(RESULT_OK, returnName);
 
         finish();
 

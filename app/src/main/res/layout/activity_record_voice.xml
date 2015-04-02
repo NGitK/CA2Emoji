@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/record_yourself_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="15dp"
+        android:text="Record yourself: "/>
+
+    <Button
+        android:id="@+id/button_play_now"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_add_gradient"
+        android:text="@string/play_button"
+        android:onClick="onSendUsersName"
+        android:layout_below="@+id/record_yourself_textView"/>
+
+    <Button
+        android:id="@+id/button_record"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_add_gradient_record"
+        android:text="@string/record_button"
+        android:onClick="onSendUsersName"
+        android:textColor="#111111"
+        android:layout_toRightOf="@+id/button_play_now"
+        android:layout_below="@+id/record_yourself_textView"/>
+
+
+</RelativeLayout>

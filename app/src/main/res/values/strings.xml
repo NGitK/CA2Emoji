@@ -9,4 +9,6 @@
     <string name="get_the_name_text_view">Invite Contact</string>
     <string name="Inbox">Inbox</string>
     <string name="title_splash_screen">Splash Screen</string>
+    <string name="play_button">Play Now</string>
+    <string name="record_button">Record</string>
 </resources>
