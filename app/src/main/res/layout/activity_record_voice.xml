@@ -1,33 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#FFFF8800">
 
     <TextView
         android:id="@+id/record_yourself_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="15dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#111111"
         android:text="Record yourself: "/>
 
-    <Button
-        android:id="@+id/button_play_now"
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/image_view1"
+        android:src="@drawable/singer"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:background="@drawable/button_add_gradient"
-        android:text="@string/play_button"
-        android:onClick="onPlay"
-        android:layout_below="@+id/record_yourself_textView"/>
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:layout_below="@+id/image_view1"
+        android:id="@+id/linear_layout1">
 
     <Button
-        android:id="@+id/button_record"
+        android:id="@+id/button_record_now"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:background="@drawable/button_add_gradient_record"
-        android:text="@string/record_button"
-        android:onClick="onRecord"
         android:textColor="#111111"
-        android:layout_toRightOf="@+id/button_play_now"
-        android:layout_below="@+id/record_yourself_textView"/>
+        android:text="@string/record_button"
+        android:onClick="startRecord"/>
 
+    <Button
+        android:id="@+id/button_stop_record"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_add_gradient_record"
+        android:text="@string/stop_record_button"
+        android:onClick="stopRecord"
+        android:textColor="#111111"
+        android:layout_toRightOf="@+id/button_play_now"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="25dp"
+        android:layout_below="@+id/linear_layout1">
+
+        <Button
+            android:id="@+id/button_play_now"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@drawable/button_add_gradient"
+            android:text="@string/play_button"
+            android:onClick="onPlayClick"/>
+
+        <Button
+            android:id="@+id/button_stop_play"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@drawable/button_add_gradient_record"
+            android:text="@string/stop_play_button"
+            android:onClick="onStopClick"
+            android:textColor="#111111"
+            android:layout_toRightOf="@+id/button_play_now"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

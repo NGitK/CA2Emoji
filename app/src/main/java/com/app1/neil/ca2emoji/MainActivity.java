@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     }
 
     public void onViewRecorderClick(View view) {
-        Intent getRecorderScreenIntent = new Intent(this, RecordActivity.class);
+        Intent getRecorderScreenIntent = new Intent(this, AudioActivity.class);
 
         getRecorderScreenIntent.putExtra("callingActivity", "MainActivity");
 

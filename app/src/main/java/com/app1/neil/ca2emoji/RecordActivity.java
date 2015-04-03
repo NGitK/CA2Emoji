@@ -20,11 +20,11 @@ public class RecordActivity extends Activity
 {
     private static final String LOG_TAG = "RecordTest";
     private static String mFileName = null;
-
     private RecordButton mRecordButton = null;
-    private MediaRecorder mRecorder = null;
 
     private PlayButton   mPlayButton = null;
+    private MediaRecorder mRecorder = null;
+
     private MediaPlayer   mPlayer = null;
 
     private void onRecord(boolean start) {
@@ -133,7 +133,7 @@ public class RecordActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_voice);
+       /** setContentView(R.layout.activity_record_voice);*/
         mRecordButton = new RecordButton(this);
         mPlayButton = new PlayButton(this);
 
