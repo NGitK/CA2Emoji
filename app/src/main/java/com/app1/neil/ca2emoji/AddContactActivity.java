@@ -24,7 +24,7 @@ import java.util.List;
 
 public class AddContactActivity extends Activity {
 
-    EditText nameTxt, phoneTxt, emailTxt, addressTxt;
+    EditText nameTxt, phoneTxt, emailTxt;
     ImageView contactImageImgView;
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactListView;
@@ -39,7 +39,6 @@ public class AddContactActivity extends Activity {
         nameTxt = (EditText) findViewById(R.id.txtName);
         phoneTxt = (EditText) findViewById(R.id.txtPhone);
         emailTxt = (EditText) findViewById(R.id.txtEmail);
-        addressTxt = (EditText) findViewById(R.id.txtAddress);
         contactListView = (ListView) findViewById(R.id.listView);
         contactImageImgView = (ImageView) findViewById(R.id.imgViewContactImage);
         dbHandler = new DatabaseHandler(getApplicationContext());
@@ -62,14 +61,18 @@ public class AddContactActivity extends Activity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Contact contact = new Contact(dbHandler.getContactsCount(), String.valueOf(nameTxt.getText()), String.valueOf(phoneTxt.getText()), String.valueOf(emailTxt.getText()), String.valueOf(addressTxt.getText()), imageUri);
+                Contact contact = new Contact(dbHandler.getContactsCount(), String.valueOf(nameTxt.getText()), String.valueOf(phoneTxt.getText()),
+                        String.valueOf(emailTxt.getText()), imageUri);
+
                 if (!contactExists(contact)) {
                     dbHandler.createContact(contact);
                     Contacts.add(contact);
-                    Toast.makeText(getApplicationContext(), String.valueOf(nameTxt.getText()) + " has been added to your Contacts!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), String.valueOf(nameTxt.getText()) + " has been added to your Contacts!",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Toast.makeText(getApplicationContext(), String.valueOf(nameTxt.getText()) + " already exists. Please use a different name.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), String.valueOf(nameTxt.getText())
+                        + " already exists. Please use a different name.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -150,8 +153,6 @@ public class AddContactActivity extends Activity {
             phone.setText(currentContact.getPhone());
             TextView email = (TextView) view.findViewById(R.id.emailAddress);
             email.setText(currentContact.getEmail());
-            TextView address = (TextView) view.findViewById(R.id.cAddress);
-            address.setText(currentContact.getAddress());
             ImageView ivContactImage = (ImageView) view.findViewById(R.id.ivContactImage);
             ivContactImage.setImageURI(currentContact.getImageURI());
 
@@ -163,6 +164,21 @@ public class AddContactActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void onSendContactSMS(View view) {
+            TextView contactPhoneTextView = (TextView)
+                    findViewById(R.id.phoneNumber);
+            String contactNumber =String.valueOf(contactPhoneTextView.getText());
+
+            Intent returnNumber = new Intent();
+
+            returnNumber.putExtra("ContactNumber", contactNumber);
+
+            setResult(RESULT_OK, returnNumber);
+
+            finish();
+
     }
 
 }

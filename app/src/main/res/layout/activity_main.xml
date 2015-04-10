@@ -14,7 +14,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="10dp"
         android:text="Get Contact Name"
         android:onClick="onGetNameClick"
         android:layout_marginTop="56dp"
@@ -27,27 +27,35 @@
         android:textStyle="bold"
         android:textSize="25dp"
         android:textColor="#007000"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/users_name_message"/>
 
     <Button
         android:id="@+id/button_view_inbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="10dp"
         android:text="View Inbox"
         android:onClick="onViewInboxClick"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/button_get_contact_name" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="10dp"
+        android:id="@+id/button_view_recorder"
         android:text="Recorder"
         android:onClick="onViewRecorderClick"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/button_view_inbox" />
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="ContactList"
+        android:onClick="onViewContactListClick"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/button_view_recorder" />
 
 </RelativeLayout>

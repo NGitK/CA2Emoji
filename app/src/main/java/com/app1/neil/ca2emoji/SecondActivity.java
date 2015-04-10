@@ -75,13 +75,13 @@ public class SecondActivity extends Activity {
 
 
     public void onSendUsersName(View view) {
-        EditText userNameET = (EditText)
+        TextView contactPhoneTextView = (TextView)
                 findViewById(R.id.users_name_edit_text);
-        String userName =String.valueOf(userNameET.getText());
+        String username =String.valueOf(contactPhoneTextView.getText());
 
                Intent returnName = new Intent();
 
-        returnName.putExtra("UsersName", userName);
+        returnName.putExtra("Username", username);
 
         setResult(RESULT_OK, returnName);
 

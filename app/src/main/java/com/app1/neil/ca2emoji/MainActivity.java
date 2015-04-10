@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     }
 
     public void onGetNameClick(View view) {
-        Intent getNameScreenIntent = new Intent(this, SecondActivity.class);
+        Intent getNameScreenIntent = new Intent(MainActivity.this, SecondActivity.class);
         final int result =1;
 
         getNameScreenIntent.putExtra("callingActivity", "MainActivity");
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
     }
 
     public void onViewInboxClick(View view) {
-        Intent getInboxScreenIntent = new Intent(this, ThirdActivityInbox.class);
+        Intent getInboxScreenIntent = new Intent(MainActivity.this, ThirdActivityInbox.class);
 
         getInboxScreenIntent.putExtra("callingActivity", "MainActivity");
 
@@ -60,11 +60,19 @@ public class MainActivity extends Activity {
     }
 
     public void onViewRecorderClick(View view) {
-        Intent getRecorderScreenIntent = new Intent(this, AudioActivity.class);
+        Intent getRecorderScreenIntent = new Intent(MainActivity.this, AudioActivity.class);
 
         getRecorderScreenIntent.putExtra("callingActivity", "MainActivity");
 
         startActivity(getRecorderScreenIntent);
+
+    }
+    public void onViewContactListClick(View view) {
+        Intent getContactList = new Intent(MainActivity.this, AddContactActivity.class);
+
+        getContactList.putExtra("callingActivity", "MainActivity");
+
+        startActivity(getContactList);
 
     }
 
