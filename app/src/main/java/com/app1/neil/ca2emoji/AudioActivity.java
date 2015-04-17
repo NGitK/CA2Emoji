@@ -1,5 +1,6 @@
 package com.app1.neil.ca2emoji;
 
+        import android.content.pm.PackageManager;
         import android.media.MediaPlayer;
         import android.media.MediaRecorder;
         import android.os.Bundle;
@@ -11,16 +12,23 @@ package com.app1.neil.ca2emoji;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import java.io.File;
+        import java.io.IOException;
+
 
 public class AudioActivity extends Activity {
+    protected boolean hasMicrophone() {
+        PackageManager pmanager = this.getPackageManager();
+        return pmanager.hasSystemFeature(
+                PackageManager.FEATURE_MICROPHONE);
+    }
+
 
     MediaRecorder myRecorder;
     MediaPlayer myPlayer;
     String outputFile = null;
-    Button startBtn;
-    Button stopBtn;
-    Button playBtn;
-    Button stopPlayBtn;
+    Button startBtn, stopBtn, playBtn, stopPlayBtn;
+    private boolean isRecording = false;
     TextView tv1;
 
     @Override
@@ -33,93 +41,76 @@ public class AudioActivity extends Activity {
 
         tv1 = (TextView) findViewById(R.id.record_yourself_textView);
         // store it to sd card
-        outputFile = Environment.getExternalStorageDirectory().
-                getAbsolutePath() + "/MyNewAudioRecording.3gpp";
+
+
+       // File mediaStorageDir = new File(Environment.getExternalStorageDirectory() + File.separator
+              //  + Environment.DIRECTORY_DCIM + File.separator + "FILE_NAME");
+
+        startBtn = (Button) findViewById(R.id.button_record_now);
+        stopBtn = (Button) findViewById(R.id.button_stop_record);
+        playBtn = (Button) findViewById(R.id.button_play_now);
+        stopPlayBtn = (Button) findViewById(R.id.button_stop_play);
+
+       // startBtn.setEnabled(false);
+        //stopBtn.setEnabled(false);
+       // playBtn.setEnabled(false);
+       // stopPlayBtn.setEnabled(false);
+
 
         myRecorder = new MediaRecorder();
         myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         myRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         myRecorder.setOutputFile(outputFile);
+        outputFile = Environment.getExternalStorageDirectory().
+                getAbsolutePath() + "/MyNewAudioRecording.3gpp";
 
-        startBtn = (Button) findViewById(R.id.button_record_now);
-        startBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                start(v);
-            }
-        });
-
-        stopBtn = (Button) findViewById(R.id.button_stop_record);
-        stopBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                stop(v);
-
-            }
-        });
-
-        playBtn = (Button) findViewById(R.id.button_play_now);
-        playBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                play(v);
-            }
-        });
-
-        stopPlayBtn = (Button) findViewById(R.id.button_stop_play);
-        stopPlayBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                stopPlay(v);
-            }
-        });
     }
 
-    public void start(View view) {
-        myRecorder.start();
-
-
-        tv1.setText("Recording Point: Recording");
+    public void startRecord(View view) throws IOException{
+        isRecording = true;
+        try {
+            myRecorder.prepare();
+            myRecorder.start();
+        } catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         startBtn.setEnabled(false);
         stopBtn.setEnabled(true);
-
-        Toast.makeText(getApplicationContext(), "Start recording...",
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_LONG).show();
     }
 
-    public void stop(View view){
+
+    public void stopRecord(View view){
+
             myRecorder.stop();
+            myRecorder.reset();
             myRecorder.release();
-            myRecorder = null;
-            stopBtn.setEnabled(false);
+           // myRecorder = null;
+            stopBtn.setEnabled(true);
             playBtn.setEnabled(true);
-            tv1.setText("Recording Point: Stop recording");
 
             Toast.makeText(getApplicationContext(), "Stop recording...",
                     Toast.LENGTH_SHORT).show();
 
     }
 
-    public void play(View view) {
+    public void onPlayClick(View view) {
 
             myPlayer = new MediaPlayer();
             myPlayer.start();
             playBtn.setEnabled(false);
             stopPlayBtn.setEnabled(true);
-            tv1.setText("Recording Point: Playing");
             Toast.makeText(getApplicationContext(), "Start play the recording...",
                     Toast.LENGTH_SHORT).show();
 
     }
 
-    public void stopPlay(View view) {
+    public void onStopClick(View view) {
             if (myPlayer != null) {
 
                 myPlayer.stop();
@@ -127,7 +118,6 @@ public class AudioActivity extends Activity {
                 myPlayer = null;
                 playBtn.setEnabled(true);
                 stopPlayBtn.setEnabled(false);
-                tv1.setText("Recording Point: Stop playing");
 
                 Toast.makeText(getApplicationContext(), "Stop playing the recording...",
 

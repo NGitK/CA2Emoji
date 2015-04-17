@@ -27,16 +27,18 @@
         android:orientation="horizontal"
         android:paddingTop="15dp"
         android:layout_below="@+id/image_view1"
-        android:id="@+id/linear_layout1">
+        android:id="@+id/linear_layout1"
+        >
 
     <Button
         android:id="@+id/button_record_now"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:background="@drawable/button_add_gradient_record"
-        android:textColor="#111111"
+        android:background="@drawable/button_add_gradient"
+        android:layout_marginRight="20dp"
         android:text="@string/record_button"
-        android:onClick="startRecord"/>
+        android:onClick="startRecord"
+        android:layout_marginBottom="10dp" />
 
     <Button
         android:id="@+id/button_stop_record"
@@ -62,6 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:background="@drawable/button_add_gradient"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
             android:text="@string/play_button"
             android:onClick="onPlayClick"/>
 

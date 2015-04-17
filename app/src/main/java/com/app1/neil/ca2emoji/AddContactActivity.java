@@ -171,13 +171,14 @@ public class AddContactActivity extends Activity {
                     findViewById(R.id.phoneNumber);
             String contactNumber =String.valueOf(contactPhoneTextView.getText());
 
-            Intent returnNumber = new Intent();
+            Intent returnNumber = new Intent(this, SMSActivity.class);
 
             returnNumber.putExtra("ContactNumber", contactNumber);
 
             setResult(RESULT_OK, returnNumber);
+        Toast.makeText(getApplicationContext(), "CLICKED", Toast.LENGTH_LONG).show();
 
-            finish();
+        startActivity(returnNumber);
 
     }
 

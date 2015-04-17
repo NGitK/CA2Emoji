@@ -20,48 +20,20 @@ public class SMSActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sms_activity);
 
-        final EditText phone = (EditText) findViewById(R.id.editTextPhone);
-        final EditText text = (EditText) findViewById(R.id.editTextMessage);
-        final EditText emailAddress = (EditText) findViewById(R.id.editTextEmail);
-        Button call = (Button) findViewById(R.id.button1);
-        Button message = (Button) findViewById(R.id.button2);
-        Button email = (Button) findViewById(R.id.button3);
+        final EditText phoneNumber = (EditText) findViewById(R.id.editTextPhone);
+        final EditText textArea = (EditText) findViewById(R.id.editTextMessage);
+        Button messageButton = (Button) findViewById(R.id.button1);
 
-        call.setOnClickListener(new OnClickListener () {
+
+        messageButton.setOnClickListener(new OnClickListener () {
             public void onClick(View v) {
-                String sPhone = "" + phone.getText();
-                if ("".equals(sPhone)) {
-                    Toast.makeText(SMSActivity.this, "Phone number cannot be blank", Toast.LENGTH_LONG).show();
-                } else {
-                    String sCall = "tel:" + sPhone;
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse(sCall));
-                    startActivity(callIntent);
-                }
-            }
-        });
-        email.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                String sEmail = "" + emailAddress.getText();
-                if ("".equals(sEmail)) {
-                    Toast.makeText(SMSActivity.this, "Email address cannot be blank", Toast.LENGTH_LONG).show();
-                } else {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    Uri data = Uri.parse("mailto:" + sEmail);
-                    intent.setData(data);
-                    startActivity(intent);
-                }
-            }
-        });
-        message.setOnClickListener(new OnClickListener () {
-            public void onClick(View v) {
-                String sPhone = "" + phone.getText();
-                String sms = "" + text.getText();
-                if ("".equals(sPhone) || "".equals(sms)) {
+                String stringPhone = "" + phoneNumber.getText();
+                String sms = "" + textArea.getText();
+                if ("".equals(stringPhone) || "".equals(sms)) {
                     Toast.makeText(SMSActivity.this, "Phone number or message text cannot be blank", Toast.LENGTH_LONG).show();
                 } else {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(sPhone, null, sms, null, null);
+                    smsManager.sendTextMessage(stringPhone, null, sms, null, null);
                     Toast.makeText(SMSActivity.this, "Message sent", Toast.LENGTH_LONG).show();
                 }
             }
@@ -90,9 +62,10 @@ public class SMSActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        EditText contactNumberET = (EditText)
+        EditText phoneET = (EditText)
                 findViewById(R.id.editTextPhone);
         String phoneNumberBack  = data.getStringExtra("ContactNumber");
-        contactNumberET.append(" " + phoneNumberBack);
+        //phoneET.append(" " + phoneNumberBack);
+        phoneET.setText(phoneNumberBack);
     }
 }
