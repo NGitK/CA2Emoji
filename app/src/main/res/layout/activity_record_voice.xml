@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:background="@drawable/button_add_gradient"
         android:layout_marginRight="20dp"
+        android:onClick="start"
         android:text="@string/record_button"
-        android:onClick="startRecord"
         android:layout_marginBottom="10dp" />
 
     <Button
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:background="@drawable/button_add_gradient_record"
         android:text="@string/stop_record_button"
-        android:onClick="stopRecord"
+        android:onClick="stop"
         android:textColor="#111111"
         android:layout_toRightOf="@+id/button_play_now"/>
 
@@ -67,17 +67,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
             android:text="@string/play_button"
-            android:onClick="onPlayClick"/>
+            android:onClick="play"/>
 
-        <Button
-            android:id="@+id/button_stop_play"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:background="@drawable/button_add_gradient_record"
-            android:text="@string/stop_play_button"
-            android:onClick="onStopClick"
-            android:textColor="#111111"
-            android:layout_toRightOf="@+id/button_play_now"/>
 
     </LinearLayout>
 

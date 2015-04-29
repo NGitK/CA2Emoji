@@ -24,6 +24,12 @@ public class SMSActivity extends Activity {
         final EditText textArea = (EditText) findViewById(R.id.editTextMessage);
         Button messageButton = (Button) findViewById(R.id.button1);
 
+        Intent i = getIntent();
+        String ph = i.getStringExtra("ContactNumber");
+        EditText phoneET = (EditText)
+                findViewById(R.id.editTextPhone);
+        //phoneET.append(" " + phoneNumberBack);
+        phoneET.setText(ph);
 
         messageButton.setOnClickListener(new OnClickListener () {
             public void onClick(View v) {
@@ -58,7 +64,7 @@ public class SMSActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -67,5 +73,5 @@ public class SMSActivity extends Activity {
         String phoneNumberBack  = data.getStringExtra("ContactNumber");
         //phoneET.append(" " + phoneNumberBack);
         phoneET.setText(phoneNumberBack);
-    }
+    }*/
 }

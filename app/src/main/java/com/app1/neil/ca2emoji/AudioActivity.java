@@ -36,7 +36,7 @@ public class AudioActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_voice);
+       // setContentView(R.layout.activity_record_voice);
 
 
         tv1 = (TextView) findViewById(R.id.record_yourself_textView);
@@ -49,7 +49,6 @@ public class AudioActivity extends Activity {
         startBtn = (Button) findViewById(R.id.button_record_now);
         stopBtn = (Button) findViewById(R.id.button_stop_record);
         playBtn = (Button) findViewById(R.id.button_play_now);
-        stopPlayBtn = (Button) findViewById(R.id.button_stop_play);
 
        // startBtn.setEnabled(false);
         //stopBtn.setEnabled(false);
@@ -82,6 +81,7 @@ public class AudioActivity extends Activity {
         startBtn.setEnabled(false);
         stopBtn.setEnabled(true);
         Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_LONG).show();
+        myRecorder.stop();
     }
 
 

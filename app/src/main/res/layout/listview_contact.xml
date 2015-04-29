@@ -31,7 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Send Message"
-            android:onClick="onSendContactSMS"
             android:layout_gravity="right"
             android:id="@+id/button_send_contact_SMS"/>
 

@@ -30,6 +30,9 @@ public class AddContactActivity extends Activity {
     ListView contactListView;
     Uri imageUri = Uri.parse("android.resource://org.intracode.contactmanager/drawable/no_user_logo.png");
     DatabaseHandler dbHandler;
+    String temp;
+    int i=0;
+    Button b[] = new Button[10] ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,21 +144,32 @@ public class AddContactActivity extends Activity {
         }
 
         @Override
-        public View getView(int position, View view, ViewGroup parent) {
+        public View getView(final int position, View view, ViewGroup parent) {
             if (view == null)
                 view = getLayoutInflater().inflate(R.layout.listview_contact, parent, false);
 
             Contact currentContact = Contacts.get(position);
-
             TextView name = (TextView) view.findViewById(R.id.contactName);
             name.setText(currentContact.getName());
             TextView phone = (TextView) view.findViewById(R.id.phoneNumber);
             phone.setText(currentContact.getPhone());
+            temp=""+phone.getText();
+            Toast.makeText(getApplicationContext(), "phone number "+temp, Toast.LENGTH_LONG).show();
             TextView email = (TextView) view.findViewById(R.id.emailAddress);
             email.setText(currentContact.getEmail());
             ImageView ivContactImage = (ImageView) view.findViewById(R.id.ivContactImage);
             ivContactImage.setImageURI(currentContact.getImageURI());
-
+            Button b2  = (Button) view.findViewById(R.id.button_send_contact_SMS);
+            b2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent returnNumber = new Intent(AddContactActivity.this, SMSActivity.class);
+                    returnNumber.putExtra("ContactNumber", temp);
+                    Toast.makeText(getApplicationContext(), "CLICKED" + temp, Toast.LENGTH_LONG).show();
+                    startActivity(returnNumber);
+                }
+            });
+            ++i;
             return view;
         }
     }
@@ -170,6 +184,7 @@ public class AddContactActivity extends Activity {
             TextView contactPhoneTextView = (TextView)
                     findViewById(R.id.phoneNumber);
             String contactNumber =String.valueOf(contactPhoneTextView.getText());
+            Toast.makeText(this, "phone number "+contactNumber, Toast.LENGTH_LONG).show();
 
             Intent returnNumber = new Intent(this, SMSActivity.class);
 

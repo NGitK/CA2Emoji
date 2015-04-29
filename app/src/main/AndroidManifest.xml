@@ -36,6 +36,9 @@
             android:name=".SMSActivity">
         </activity>
         <activity
+            android:name=".Recorder">
+        </activity>
+        <activity
             android:name=".SplashScreen"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
             <intent-filter>
