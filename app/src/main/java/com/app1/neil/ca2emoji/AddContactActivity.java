@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,6 +60,7 @@ public class AddContactActivity extends Activity {
         tabSpec.setContent(R.id.tabContactList);
         tabSpec.setIndicator("List");
         tabHost.addTab(tabSpec);
+
 
         final Button addBtn = (Button) findViewById(R.id.btnAdd);
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +142,7 @@ public class AddContactActivity extends Activity {
 
     private class ContactListAdapter extends ArrayAdapter<Contact> {
         public ContactListAdapter() {
-            super (AddContactActivity.this, R.layout.listview_contact, Contacts);
+            super(AddContactActivity.this, R.layout.listview_contact, Contacts);
         }
 
         @Override
@@ -159,20 +161,35 @@ public class AddContactActivity extends Activity {
             email.setText(currentContact.getEmail());
             ImageView ivContactImage = (ImageView) view.findViewById(R.id.ivContactImage);
             ivContactImage.setImageURI(currentContact.getImageURI());
-            Button b2  = (Button) view.findViewById(R.id.button_send_contact_SMS);
-            b2.setOnClickListener(new View.OnClickListener() {
+
+            contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Intent returnNumber = new Intent(AddContactActivity.this, SMSActivity.class);
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+                   Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+                    whatsappIntent.setType("text/plain");
+                    //whatsappIntent.setPackage("com.whatsapp");
+                    whatsappIntent.putExtra(Intent.EXTRA_TEXT, temp);
+                    try {
+                        startActivity(whatsappIntent);
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_LONG).show();
+                    }
+
+                    /*Intent returnNumber = new Intent(AddContactActivity.this, SMSActivity.class);
                     returnNumber.putExtra("ContactNumber", temp);
                     Toast.makeText(getApplicationContext(), "CLICKED" + temp, Toast.LENGTH_LONG).show();
-                    startActivity(returnNumber);
+                    startActivity(returnNumber); */
                 }
             });
             ++i;
             return view;
         }
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

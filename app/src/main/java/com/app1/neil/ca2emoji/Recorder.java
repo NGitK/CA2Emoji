@@ -1,6 +1,8 @@
 package com.app1.neil.ca2emoji;
 
+import java.util.Random;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,11 +13,13 @@ import android.media.MediaRecorder;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
 public class Recorder extends Activity {
 
+    final Random rnd = new Random();
     private MediaRecorder myAudioRecorder;
     private String outputFile = null;
     private Button start,stop,play;
@@ -38,8 +42,35 @@ public class Recorder extends Activity {
         myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         myAudioRecorder.setOutputFile(outputFile);
 
+        final ImageView img = (ImageView) findViewById(R.id.image_view1);
+        // I have 6 images named img_0 to img_5, so...
+        final String str = "song_" + rnd.nextInt(5);
+        img.setImageDrawable
+                (
+                        getResources().getDrawable(getResourceID(str, "drawable",
+                                getApplicationContext()))
+                );
+
     }
 
+    protected final static int getResourceID
+            (final String resName, final String resType, final Context ctx)
+    {
+        final int ResourceID =
+                ctx.getResources().getIdentifier(resName, resType,
+                        ctx.getApplicationInfo().packageName);
+        if (ResourceID == 0)
+        {
+            throw new IllegalArgumentException
+                    (
+                            "No resource string found with name " + resName
+                    );
+        }
+        else
+        {
+            return ResourceID;
+        }
+    }
     public void start(View view){
         try {
             myAudioRecorder.prepare();

@@ -27,13 +27,6 @@
             android:id="@+id/contactName"
             android:layout_gravity="left|center_vertical"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send Message"
-            android:layout_gravity="right"
-            android:id="@+id/button_send_contact_SMS"/>
-
 
         <TextView
             android:layout_width="wrap_content"

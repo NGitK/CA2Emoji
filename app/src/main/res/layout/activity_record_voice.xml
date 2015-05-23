@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#FFFF8800">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF8800"
+    tools:context=".Recorder">
 
     <TextView
         android:id="@+id/record_yourself_textView"
@@ -17,8 +20,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/image_view1"
-        android:src="@drawable/singer"/>
+        android:id="@+id/image_view1"/>
 
 
     <LinearLayout
